@@ -1,0 +1,702 @@
+{
+  "openapi" : "3.0.0",
+  "info" : {
+    "title" : "Retail API v1",
+    "description" : "Retail API",
+    "contact" : {
+      "name" : "Your Name",
+      "url" : "https://example.org",
+      "email" : "youremail@example.org"
+    },
+    "license" : {
+      "name" : "MIT",
+      "url" : "https://opensource.org/licenses/MIT"
+    },
+    "version" : "1"
+  },
+  "servers" : [ {
+    "url" : "https://api-test-qwiklabs-gcp-00-4d2ff1a07666.apigee-apijam.dev/retail/v1",
+    "description" : "Retail API v1"
+  } ],
+  "security" : [ {
+    "apikey" : [ ]
+  } ],
+  "tags" : [ {
+    "name" : "categories",
+    "description" : "Product Categories"
+  }, {
+    "name" : "products",
+    "description" : "Products"
+  }, {
+    "name" : "orders",
+    "description" : "Orders"
+  }, {
+    "name" : "stores",
+    "description" : "Stores"
+  } ],
+  "paths" : {
+    "/categories" : {
+      "get" : {
+        "tags" : [ "categories" ],
+        "summary" : "Get all categories",
+        "operationId" : "getCategories",
+        "responses" : {
+          "200" : {
+            "description" : "Complete list of categories",
+            "content" : {
+              "application/json" : {
+                "schema" : {
+                  "$ref" : "#/components/schemas/Categories"
+                }
+              }
+            }
+          },
+          "default" : {
+            "description" : "unexpected error",
+            "content" : {
+              "application/json" : {
+                "schema" : {
+                  "$ref" : "#/components/schemas/Error"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/categories/{categoryId}" : {
+      "get" : {
+        "tags" : [ "categories" ],
+        "summary" : "Get a specific category",
+        "operationId" : "getCategoryById",
+        "parameters" : [ {
+          "name" : "categoryId",
+          "in" : "path",
+          "description" : "category id",
+          "required" : true,
+          "style" : "simple",
+          "explode" : false,
+          "schema" : {
+            "type" : "integer"
+          }
+        } ],
+        "responses" : {
+          "200" : {
+            "description" : "Selected category",
+            "content" : {
+              "application/json" : {
+                "schema" : {
+                  "$ref" : "#/components/schemas/Category"
+                }
+              }
+            }
+          },
+          "404" : {
+            "description" : "Category not found",
+            "content" : {
+              "application/json" : {
+                "schema" : {
+                  "$ref" : "#/components/schemas/Error"
+                }
+              }
+            }
+          },
+          "default" : {
+            "description" : "unexpected error",
+            "content" : {
+              "application/json" : {
+                "schema" : {
+                  "$ref" : "#/components/schemas/Error"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/stores" : {
+      "get" : {
+        "tags" : [ "stores" ],
+        "summary" : "Get all stores",
+        "operationId" : "getStores",
+        "responses" : {
+          "200" : {
+            "description" : "Complete list of stores",
+            "content" : {
+              "application/json" : {
+                "schema" : {
+                  "$ref" : "#/components/schemas/Stores"
+                }
+              }
+            }
+          },
+          "default" : {
+            "description" : "unexpected error",
+            "content" : {
+              "application/json" : {
+                "schema" : {
+                  "$ref" : "#/components/schemas/Error"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/stores/{storeId}" : {
+      "get" : {
+        "tags" : [ "stores" ],
+        "summary" : "Get a specific store",
+        "operationId" : "getStoreById",
+        "parameters" : [ {
+          "name" : "storeId",
+          "in" : "path",
+          "description" : "store id",
+          "required" : true,
+          "style" : "simple",
+          "explode" : false,
+          "schema" : {
+            "type" : "string"
+          }
+        } ],
+        "responses" : {
+          "200" : {
+            "description" : "Selected store",
+            "content" : {
+              "application/json" : {
+                "schema" : {
+                  "$ref" : "#/components/schemas/Store"
+                }
+              }
+            }
+          },
+          "404" : {
+            "description" : "Store not found",
+            "content" : {
+              "application/json" : {
+                "schema" : {
+                  "$ref" : "#/components/schemas/Error"
+                }
+              }
+            }
+          },
+          "default" : {
+            "description" : "unexpected error",
+            "content" : {
+              "application/json" : {
+                "schema" : {
+                  "$ref" : "#/components/schemas/Error"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/products" : {
+      "get" : {
+        "tags" : [ "products" ],
+        "summary" : "Get all products",
+        "operationId" : "getProducts",
+        "responses" : {
+          "200" : {
+            "description" : "Complete list of products",
+            "content" : {
+              "application/json" : {
+                "schema" : {
+                  "$ref" : "#/components/schemas/Products"
+                }
+              }
+            }
+          },
+          "default" : {
+            "description" : "unexpected error",
+            "content" : {
+              "application/json" : {
+                "schema" : {
+                  "$ref" : "#/components/schemas/Error"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/products/{productId}" : {
+      "get" : {
+        "tags" : [ "products" ],
+        "summary" : "Get a specific product",
+        "operationId" : "getProductById",
+        "parameters" : [ {
+          "name" : "productId",
+          "in" : "path",
+          "description" : "product id",
+          "required" : true,
+          "style" : "simple",
+          "explode" : false,
+          "schema" : {
+            "type" : "string"
+          }
+        } ],
+        "responses" : {
+          "200" : {
+            "description" : "Selected product",
+            "content" : {
+              "application/json" : {
+                "schema" : {
+                  "$ref" : "#/components/schemas/Product"
+                }
+              }
+            }
+          },
+          "404" : {
+            "description" : "Product not found",
+            "content" : {
+              "application/json" : {
+                "schema" : {
+                  "$ref" : "#/components/schemas/Error"
+                }
+              }
+            }
+          },
+          "default" : {
+            "description" : "unexpected error",
+            "content" : {
+              "application/json" : {
+                "schema" : {
+                  "$ref" : "#/components/schemas/Error"
+                }
+              }
+            }
+          }
+        }
+      },
+      "patch" : {
+        "tags" : [ "products" ],
+        "summary" : "Update a specific product",
+        "description" : "Only overall_rating can be changed, and it must be a number.",
+        "operationId" : "updateProductById",
+        "parameters" : [ {
+          "name" : "productId",
+          "in" : "path",
+          "description" : "product id",
+          "required" : true,
+          "style" : "simple",
+          "explode" : false,
+          "schema" : {
+            "type" : "string"
+          }
+        } ],
+        "requestBody" : {
+          "description" : "Product fields to update",
+          "content" : {
+            "application/json" : {
+              "schema" : {
+                "$ref" : "#/components/schemas/ProductForUpdate"
+              }
+            }
+          },
+          "required" : true
+        },
+        "responses" : {
+          "200" : {
+            "description" : "Returns the request product update fields",
+            "content" : {
+              "application/json" : {
+                "schema" : {
+                  "$ref" : "#/components/schemas/ProductForUpdate"
+                }
+              }
+            }
+          },
+          "401" : {
+            "description" : "Unauthorized",
+            "content" : {
+              "application/json" : {
+                "schema" : {
+                  "$ref" : "#/components/schemas/Error"
+                }
+              }
+            }
+          },
+          "404" : {
+            "description" : "Product not found",
+            "content" : {
+              "application/json" : {
+                "schema" : {
+                  "$ref" : "#/components/schemas/Error"
+                }
+              }
+            }
+          },
+          "default" : {
+            "description" : "unexpected error",
+            "content" : {
+              "application/json" : {
+                "schema" : {
+                  "$ref" : "#/components/schemas/Error"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/orders" : {
+      "post" : {
+        "tags" : [ "orders" ],
+        "summary" : "Create a new order",
+        "operationId" : "createOrder",
+        "requestBody" : {
+          "description" : "New order fields (freeform)",
+          "content" : {
+            "application/json" : {
+              "schema" : {
+                "$ref" : "#/components/schemas/Order"
+              }
+            }
+          },
+          "required" : true
+        },
+        "responses" : {
+          "200" : {
+            "description" : "Order created successfully",
+            "content" : {
+              "application/json" : {
+                "schema" : {
+                  "$ref" : "#/components/schemas/NewOrderResponse"
+                }
+              }
+            }
+          },
+          "default" : {
+            "description" : "unexpected error",
+            "content" : {
+              "application/json" : {
+                "schema" : {
+                  "$ref" : "#/components/schemas/Error"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/orders/{orderId}" : {
+      "get" : {
+        "tags" : [ "orders" ],
+        "summary" : "Get a specific order",
+        "operationId" : "getOrderById",
+        "parameters" : [ {
+          "name" : "orderId",
+          "in" : "path",
+          "description" : "order id",
+          "required" : true,
+          "style" : "simple",
+          "explode" : false,
+          "schema" : {
+            "type" : "string"
+          }
+        } ],
+        "responses" : {
+          "200" : {
+            "description" : "Selected order",
+            "content" : {
+              "application/json" : {
+                "schema" : {
+                  "$ref" : "#/components/schemas/Order"
+                }
+              }
+            }
+          },
+          "404" : {
+            "description" : "Order not found",
+            "content" : {
+              "application/json" : {
+                "schema" : {
+                  "$ref" : "#/components/schemas/Error"
+                }
+              }
+            }
+          },
+          "default" : {
+            "description" : "unexpected error",
+            "content" : {
+              "application/json" : {
+                "schema" : {
+                  "$ref" : "#/components/schemas/Error"
+                }
+              }
+            }
+          }
+        }
+      },
+      "delete" : {
+        "tags" : [ "orders" ],
+        "summary" : "Delete a specific order",
+        "operationId" : "deleteOrderById",
+        "parameters" : [ {
+          "name" : "orderId",
+          "in" : "path",
+          "description" : "order id",
+          "required" : true,
+          "style" : "simple",
+          "explode" : false,
+          "schema" : {
+            "type" : "string"
+          }
+        } ],
+        "responses" : {
+          "200" : {
+            "description" : "Null response",
+            "content" : {
+              "application/json" : {
+                "schema" : {
+                  "$ref" : "#/components/schemas/DeleteOrderResponse"
+                }
+              }
+            }
+          },
+          "404" : {
+            "description" : "Order not found",
+            "content" : {
+              "application/json" : {
+                "schema" : {
+                  "$ref" : "#/components/schemas/Error"
+                }
+              }
+            }
+          },
+          "default" : {
+            "description" : "unexpected error",
+            "content" : {
+              "application/json" : {
+                "schema" : {
+                  "$ref" : "#/components/schemas/Error"
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+  },
+  "components" : {
+    "schemas" : {
+      "Category" : {
+        "required" : [ "color", "id", "name" ],
+        "type" : "object",
+        "properties" : {
+          "color" : {
+            "type" : "string",
+            "description" : "use this color for displaying this category"
+          },
+          "id" : {
+            "minimum" : 0,
+            "type" : "integer",
+            "description" : "integer id (used for access)",
+            "format" : "int32"
+          },
+          "name" : {
+            "type" : "string",
+            "description" : "category name"
+          }
+        },
+        "description" : "product category"
+      },
+      "Categories" : {
+        "type" : "array",
+        "description" : "array of product categories",
+        "items" : {
+          "$ref" : "#/components/schemas/Category"
+        }
+      },
+      "Store" : {
+        "required" : [ "id", "name", "site_type" ],
+        "type" : "object",
+        "properties" : {
+          "adr" : {
+            "$ref" : "#/components/schemas/Address"
+          },
+          "affiliate" : {
+            "type" : "string",
+            "description" : "affiliate name"
+          },
+          "id" : {
+            "minimum" : 0,
+            "type" : "integer",
+            "description" : "integer id (NOT used for access)",
+            "format" : "int32"
+          },
+          "location" : {
+            "$ref" : "#/components/schemas/Location"
+          },
+          "name" : {
+            "type" : "string",
+            "description" : "store name"
+          },
+          "phone" : {
+            "type" : "string",
+            "description" : "store phone number"
+          },
+          "site_type" : {
+            "type" : "string",
+            "description" : "type of site",
+            "enum" : [ "store", "warehouse" ]
+          }
+        },
+        "description" : "store"
+      },
+      "Stores" : {
+        "type" : "object",
+        "additionalProperties" : {
+          "$ref" : "#/components/schemas/Store"
+        },
+        "description" : "list of stores"
+      },
+      "Address" : {
+        "required" : [ "addr1", "city", "country", "state", "zip" ],
+        "type" : "object",
+        "properties" : {
+          "addr1" : {
+            "type" : "string",
+            "description" : "street address 1"
+          },
+          "addr2" : {
+            "type" : "string",
+            "description" : "street address 2"
+          },
+          "city" : {
+            "type" : "string",
+            "description" : "city"
+          },
+          "country" : {
+            "type" : "string",
+            "description" : "country"
+          },
+          "state" : {
+            "type" : "string",
+            "description" : "state"
+          },
+          "zip" : {
+            "type" : "string",
+            "description" : "zip code"
+          }
+        },
+        "description" : "store address"
+      },
+      "Location" : {
+        "required" : [ "latitude", "longitude" ],
+        "type" : "object",
+        "properties" : {
+          "latitude" : {
+            "maximum" : 90,
+            "minimum" : -90,
+            "type" : "number",
+            "description" : "latitude in decimal degrees",
+            "format" : "float"
+          },
+          "longitude" : {
+            "maximum" : 180,
+            "minimum" : -180,
+            "type" : "number",
+            "description" : "longitude in decimal degrees",
+            "format" : "float"
+          }
+        },
+        "description" : "store location"
+      },
+      "Product" : {
+        "required" : [ "category", "image", "name", "overall_rating", "product_name", "short_description" ],
+        "type" : "object",
+        "properties" : {
+          "category" : {
+            "type" : "string",
+            "description" : "category name"
+          },
+          "image" : {
+            "type" : "string",
+            "description" : "image url"
+          },
+          "name" : {
+            "type" : "string",
+            "description" : "product id"
+          },
+          "overall_rating" : {
+            "type" : "number",
+            "description" : "rating of product",
+            "format" : "float"
+          },
+          "product_name" : {
+            "type" : "string",
+            "description" : "descriptive product name"
+          },
+          "short_description" : {
+            "type" : "string",
+            "description" : "short paragraph describing the product"
+          }
+        },
+        "description" : "product"
+      },
+      "ProductForUpdate" : {
+        "required" : [ "overall_rating" ],
+        "type" : "object",
+        "properties" : {
+          "overall_rating" : {
+            "type" : "number",
+            "description" : "rating of product",
+            "format" : "float"
+          }
+        },
+        "description" : "product (updateable fields)"
+      },
+      "Products" : {
+        "type" : "object",
+        "additionalProperties" : {
+          "$ref" : "#/components/schemas/Product"
+        },
+        "description" : "list of products"
+      },
+      "Order" : {
+        "type" : "object",
+        "additionalProperties" : true,
+        "description" : "order request"
+      },
+      "NewOrderResponse" : {
+        "required" : [ "name" ],
+        "type" : "object",
+        "properties" : {
+          "name" : {
+            "type" : "string",
+            "description" : "string id (used for access)"
+          }
+        },
+        "description" : "order response"
+      },
+      "DeleteOrderResponse" : {
+        "type" : "object",
+        "nullable" : true
+      },
+      "Error" : {
+        "required" : [ "error", "error_description" ],
+        "type" : "object",
+        "properties" : {
+          "error" : {
+            "type" : "string"
+          },
+          "error_description" : {
+            "type" : "string"
+          }
+        },
+        "description" : "error response"
+      }
+    },
+    "securitySchemes" : {
+      "apikey" : {
+        "type" : "apiKey",
+        "name" : "apikey",
+        "in" : "header"
+      }
+    }
+  }
+}
